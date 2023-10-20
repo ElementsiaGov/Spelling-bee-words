@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #fbc02d; /* Yellow color */
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #word-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .word-item {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 20px;
+            width: calc(33.33% - 20px);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .word-item:hover {
+            transform: scale(1.05);
+        }
+
+        #sort-button {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            padding: 10px;
+            background-color: #fbc02d; /* Yellow color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .word-item {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>8th Grade Spelling Bee Words</h1>
+    </header>
+    <div id="word-list">
+ <div class="word-item">Adjective</div>
+    <div class="word-item">Allegiance</div>
+    <div class="word-item">Biography</div>
+    <div class="word-item">Dedication</div>
+    <div class="word-item">Equation</div>
+    <div class="word-item">Flourish</div>
+    <div class="word-item">Generate</div>
+    <div class="word-item">Harmonize</div>
+    <div class="word-item">Illuminate</div>
+    <div class="word-item">Journey</div>
+    <div class="word-item">Knowledge</div>
+    <div class="word-item">Luminous</div>
+    <div class="word-item">Magnificent</div>
+    <div class="word-item">Narrative</div>
+    <div class="word-item">Observation</div>
+    <div class="word-item">Pinnacle</div>
+    <div class="word-item">Qualification</div>
+    <div class="word-item">Resilience</div>
+    <div class="word-item">Satisfaction</div>
+    <div class="word-item">Turbulent</div>
+    <div class="word-item">Uniformity</div>
+    <div class="word-item">Vigilant</div>
+    <div class="word-item">Wholesome</div>
+    <div class="word-item">Zealous</div>
+    <div class="word-item">Apprehensive</div>
+    <div class="word-item">Benevolent</div>
+    <div class="word-item">Comprehend</div>
+    <div class="word-item">Dexterity</div>
+    <div class="word-item">Eloquent</div>
+    <div class="word-item">Fascinate</div>
+    <div class="word-item">Gratitude</div>
+    <div class="word-item">Hypothesis</div>
+    <div class="word-item">Innovative</div>
+    <div class="word-item">Judicious</div>
+    <div class="word-item">Kinetic</div>
+    <div class="word-item">Liberate</div>
+    <div class="word-item">Majestic</div>
+    <div class="word-item">Noteworthy</div>
+    <div class="word-item">Optimistic</div>
+    <div class="word-item">Perseverance</div>
+    <div class="word-item">Quotidian</div>
+    <div class="word-item">Resonance</div>
+    <div class="word-item">Serenity</div>
+    <div class="word-item">Tangible</div>
+    <div class="word-item">Ubiquitous</div>
+    <div class="word-item">Voracious</div>
+    <div class="word-item">Whimsical</div>
+    <div class="word-item">Yielding</div>
+    <div class="word-item">Zestful</div>
+    <div class="word-item">Adequate</div>
+    <div class="word-item">Blissful</div>
+    <div class="word-item">Cautious</div>
+    <div class="word-item">Delightful</div>
+    <div class="word-item">Efficient</div>
+    <div class="word-item">Fragile</div>
+    <div class="word-item">Generous</div>
+    <div class="word-item">Harmony</div>
+    <div class="word-item">Impressive</div>
+    <div class="word-item">Joyful</div>
+    <div class="word-item">Keenness</div>
+    <div class="word-item">Lively</div>
+    <div class="word-item">Marvelous</div>
+    <div class="word-item">Nurturing</div>
+    <div class="word-item">Outstanding</div>
+    <div class="word-item">Patient</div>
+    <div class="word-item">Quaint</div>
+    <div class="word-item">Reliable</div>
+    <div class="word-item">Sincere</div>
+    <div class="word-item">Tranquil</div>
+    <div class="word-item">Understanding</div>
+    <div class="word-item">Versatile</div>
+    <div class="word-item">Wonderful</div>
+    </div>
+    <button id="sort-button" onclick="sortWords()">Sort by Difficulty (Easiest to Hardest)</button>
+
+    <script>
+        let ascendingSort = true;
+
+        function sortWords() {
+            var wordList = document.getElementById("word-list");
+            var wordItems = Array.from(wordList.getElementsByClassName("word-item"));
+
+            if (ascendingSort) {
+                wordItems.sort((a, b) => a.textContent.localeCompare(b.textContent));
+            } else {
+                wordItems.sort((a, b) => b.textContent.localeCompare(a.textContent));
+            }
+
+            wordList.innerHTML = '';
+            wordItems.forEach(item => wordList.appendChild(item));
+            ascendingSort = !ascendingSort;
+            updateSortButtonLabel();
+        }
+
+        function updateSortButtonLabel() {
+            const button = document.getElementById("sort-button");
+            if (ascendingSort) {
+                button.textContent = "Sort by Difficulty (Easiest to Hardest)";
+            } else {
+                button.textContent = "Sort by Difficulty (Hardest to Easiest)";
+            }
+        }
+
+        // Initial sorting
+        sortWords();
+    </script>
+</body>
+</html>
